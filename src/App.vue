@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ag-grid-vue
+    style="width: 600px; height: 450px"
+    class="ag-theme-alpine"
+    :columnDefs="columnDefs"
+    :rowData="rowData"
+    enableSorting:true
+  >
+  </ag-grid-vue>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+import { AgGridVue } from "ag-grid-vue3";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    AgGridVue,
+  },
+  setup() {
+    return {
+      columnDefs: [
+        { headerName: "Flight", field: "flight", filter: true},
+        { headerName: "Departure", field: "departure", filter: true },
+        { headerName: "Destination", field: "destination", filter: true},
+      ],
+      rowData: [
+        { flight: "Flight 1", departure: "Celica", destination: "Rome" },
+        { flight: "Flight 2", departure: "Mondeo", destination: "Virginia" },
+        { flight: "Flight 3", departure: "Boxster", destination: "Key West" },
+        { flight: "Flight 4", departure: "Celica", destination: "Rome" },
+        { flight: "Flight 5", departure: "Mondeo", destination: "Virginia" },
+        { flight: "Flight 6", departure: "Boxster", destination: "Key West" },
+        { flight: "Flight 7", departure: "Celica", destination: "Rome" },
+        { flight: "Flight 8", departure: "Mondeo", destination: "Virginia" },
+        { flight: "Flight 9", departure: "Boxster", destination: "Key West" },
+      ],
+    };
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
